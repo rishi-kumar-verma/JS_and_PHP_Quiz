@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson Website</title>
+    <!-- Link to Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="lib/maxcdn.bootstrapcdn.com_bootstrap_4.5.2_css_bootstrap.min.css">
+    <style>
+        /* Additional custom styles */
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            text-align: left;
+        }
+        
+        .main-container {
+            display: flex;
+            flex: 1;
+        }
+        
+        .sidebar {
+            flex: 0 0 250px;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+        }
+        
+        .sidebar nav {
+            padding: 20px;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .sidebar button {
+            margin: 20px;
+        }
+        
+        #readyforexamBtn {
+            display: none;
+        }
+        
+        #reviselessonsBtn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Chapter 1</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <nav class="navbar-dark">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#lesson1">Lesson 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lesson2">Lesson 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lesson3">Lesson 3</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+
+                <button id="nextLessonBtn" class="btn btn-light mt-3">Next Lesson</button>
+                <button id="readyforexamBtn" class="btn btn-light mt-3">Ready For Exam</button>
+                <button id="reviselessonsBtn" class="btn btn-light mt-3">Revise Lessons</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab-content" id="lessonsContent">
+                            <!-- ... Lesson content here ... -->
+                            <!-- Lesson 1 Content (Video) -->
+                            <div class="tab-pane fade show active" id="lesson1" role="tabpanel">
+                                <h2>Lesson 1: Introduction to HTML</h2>
+                                <p>In this lesson, we'll learn the basics of HTML.</p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/your-video-id" frameborder="0" allowfullscreen></iframe>
+                            </div>
+
+                            <!-- Lesson 2 Content (PowerPoint) -->
+                            <div class="tab-pane fade" id="lesson2" role="tabpanel">
+                                <h2>Lesson 2: Creating Web Layouts with CSS</h2>
+                                <p>In this lesson, we'll explore how to style web layouts using CSS.</p>
+                                <iframe src="https://your-powerpoint-link.com" width="100%" height="500px"></iframe>
+                            </div>
+
+                            <!-- Lesson 3 Content (PDF) -->
+                            <div class="tab-pane fade" id="lesson3" role="tabpanel">
+                                <h2>Lesson 3: Understanding Responsive Design</h2>
+                                <p>In this lesson, we'll dive into responsive design principles.</p>
+                                <embed src="https://bel-india.in/Documentviews.aspx?fileName=WebAd_IPSS-18-08-23.pdf" type="application/pdf" width="100%" height="600px" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Link to Bootstrap JS and jQuery via CDN -->
+    <script src="lib/code.jquery.com_jquery-3.5.1.slim.min.js"></script>
+    <script src="lib/cdn.jsdelivr.net_npm_bootstrap@4.5.2_dist_js_bootstrap.min.js"></script>
+
+    <!-- Initialize Bootstrap Tabs -->
+    <script>
+        $(document).ready(function() {
+            var readyforexamBtn = document.getElementById("readyforexamBtn");
+            var reviselessonsBtn = document.getElementById("reviselessonsBtn");
+            var nextLessonBtn = document.getElementById("nextLessonBtn");
+            $('.nav-link').on('click', function(e) {
+                e.preventDefault();
+                // $(this).tab('show');
+            });
+            var lessonIndex = 1;
+            $('#nextLessonBtn').click(function() {
+                if (lessonIndex < 3) {
+                    lessonIndex++;
+                    $('.nav-link[href="#lesson' + lessonIndex + '"]').tab('show');
+                    if (lessonIndex == 3) {
+                        readyforexamBtn.style.display = "block";
+                        reviselessonsBtn.style.display = "block";
+                        nextLessonBtn.style.display = "none";
+                    }
+                }
+            });
+            $('#reviselessonsBtn').click(function() {
+                window.location.reload();
+            });
+            $('#readyforexamBtn').click(function() {
+                window.location.href = "start-exam.php";
+            });
+        });
+    </script>
+</body>
+
+</html>
